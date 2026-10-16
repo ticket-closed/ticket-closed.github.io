@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ticket Closed · Attrezzatura per il supporto IT</title>
+<meta name="description" content="Attrezzatura, strumenti, formazione e software selezionati per chi lavora nell'IT support e nel service desk.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#0a614b">
+<!-- Anteprima quando il link viene condiviso su social e app di messaggi -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ticket Closed">
+<meta property="og:description" content="Attrezzatura, strumenti, formazione e software selezionati per chi lavora nel supporto IT.">
+<meta property="og:locale" content="it_IT">
+<!--
+  ============================================================
+  TICKET CLOSED
+  Sessione 1: la struttura (HTML)     → dopo il </style>
+  Sessione 2: l'aspetto (CSS)         → tra <style>
+  /* Caratteri ospitati sul sito (cartella fonts/). Se i file mancano, si usano i caratteri di riserva. */
+  @font-face { font-family: "Barlow Condensed"; src: url("fonts/BarlowCondensed-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Barlow Condensed"; src: url("fonts/BarlowCondensed-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+  @font-face { font-family: "Source Sans 3"; src: url("fonts/SourceSans3-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Source Sans 3"; src: url("fonts/SourceSans3-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "JetBrains Mono"; src: url("fonts/JetBrainsMono-Medium.ttf") format("truetype"); font-weight: 500; font-display: swap; }
+ e </style>
+</head>
+<body>
+
+  Sessione 3: l'interazione (JS)      → in fondo, tra <script> e </script>
+
+  PER AGGIUNGERE UN PRODOTTO: copia un blocco <article class="ticket">,
+  cambia codice, titolo, descrizione, "Ideale per" e il link del pulsante.
+  PER ATTIVARE I GUADAGNI: in fondo al file, scrivi il tuo codice
+  Amazon Associates in TAG_AFFILIATO. Tutti i link si aggiornano da soli.
+  ============================================================
+-->
+<style>
+  /* Layout: colonna unica centrata; i prodotti sono "ticket" in una griglia che si adatta allo schermo */
+  :root {
+    --bg: #f3f5f7;          /* sfondo pagina, grigio con un filo di blu */
+    --surface: #ffffff;     /* sfondo delle schede */
+    --ink: #17212b;         /* testo principale */
+    --muted: #5b6876;       /* testo secondario */
+    --line: #d6dde4;        /* bordi */
+    --accent: #0a614b;      /* verde "ticket risolto" */
+    --accent-ink: #ffffff;
+    --accent-soft: #e3f0ec; /* sfondo leggero verde, per le etichette */
+    --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --font-body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #11171d; --surface: #19212a; --ink: #e6ebf0; --muted: #9aa8b5;
+      --line: #2c3742; --accent: #3fbf96; --accent-ink: #0b1a14; --accent-soft: #17332b; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #11171d; --surface: #19212a; --ink: #e6ebf0; --muted: #9aa8b5;
+    --line: #2c3742; --accent: #3fbf96; --accent-ink: #0b1a14; --accent-soft: #17332b; color-scheme: dark;
+  }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  /* Intestazione */
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 12px; padding-block: 16px;
+  }
+  .logo {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.6rem;
+    letter-spacing: 0.02em; text-transform: uppercase; color: var(--ink); text-decoration: none;
+  }
+  .logo span { color: var(--accent); }
+  nav ul { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; margin: 0; padding: 0; }
+  nav a { color: var(--muted); text-decoration: none; font-weight: 600; }
+  nav a:hover, nav a:focus-visible { color: var(--ink); }
+
+  /* Apertura */
+  .hero .wrap { padding-block: 48px 32px; display: grid; gap: 16px; justify-items: start; }
+  .hero-id { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); margin: 0; }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(2.4rem, 7vw, 4.2rem); line-height: 1; margin: 0;
+    text-wrap: balance; max-width: 16ch;
+  }
+  .hero p { max-width: 60ch; color: var(--muted); margin: 0; }
+  .hero-dati {
+    display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 8px 0 0; padding: 0; list-style: none;
+    font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted);
+  }
+  .hero-dati strong { color: var(--ink); font-weight: 500; }
+
+  /* Categorie (filtro) */
+  .categorie .wrap { padding-block: 8px 24px; }
+  .categorie ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .categorie a {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+    border: 1px solid var(--line); border-radius: 999px;
+    color: var(--ink); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  }
+  .categorie a:hover, .categorie a:focus-visible { border-color: var(--accent); color: var(--accent); }
+  .categorie a.attivo { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .conta { font-family: var(--font-mono); font-size: 0.75rem; opacity: 0.75; }
+
+  /* Prodotti */
+  .prodotti .wrap { padding-block: 16px 56px; display: grid; gap: 40px; }
+  .gruppo h2 {
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; font-size: 1.5rem; margin: 0 0 4px;
+  }
+  .gruppo-intro { margin: 0 0 16px; color: var(--muted); max-width: 60ch; }
+  .griglia { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 16px; }
+
+  .ticket {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0;
+  }
+  .ticket-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted);
+    padding-bottom: 10px; border-bottom: 1px dashed var(--line);
+  }
+  .stato { color: var(--accent); }
+  .ticket h3 { font-size: 1.15rem; margin: 0; line-height: 1.3; }
+  .ticket p { margin: 0; color: var(--muted); font-size: 0.98rem; flex: 1; }
+  .ideale {
+    align-self: flex-start; font-size: 0.85rem; font-weight: 600;
+    background: var(--accent-soft); color: var(--accent); padding: 3px 10px; border-radius: 999px;
+  }
+  .bottone {
+    align-self: flex-start; background: var(--accent); color: var(--accent-ink);
+    padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600;
+  }
+  .bottone:hover { filter: brightness(1.1); }
+  .bottone:focus-visible, nav a:focus-visible, .categorie a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* Come scegliamo */
+  .metodo { border-top: 1px solid var(--line); }
+  .metodo .wrap { padding-block: 48px; display: grid; gap: 24px; }
+  .metodo h2 {
+    font-family: var(--font-display); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.05; margin: 0;
+  }
+  .criteri { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
+  .criteri li { display: grid; gap: 6px; min-width: 0; }
+  .criteri .codice { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent); }
+  .criteri strong { font-size: 1.1rem; }
+  .criteri span { color: var(--muted); }
+
+  /* Domande frequenti */
+  .faq .wrap { padding-block: 0 56px; display: grid; gap: 12px; max-width: 68rem; }
+  .faq h2 {
+    font-family: var(--font-display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; font-size: 1.5rem; margin: 0 0 4px;
+  }
+  .faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; }
+  .faq summary { cursor: pointer; font-weight: 600; }
+  .faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+  .faq details p { margin: 10px 0 0; color: var(--muted); max-width: 65ch; }
+
+  /* Piè di pagina */
+  footer { border-top: 1px solid var(--line); }
+  footer .wrap { padding-block: 24px; color: var(--muted); font-size: 0.9rem; display: grid; gap: 6px; }
+  footer p { margin: 0; max-width: 70ch; }
+  footer a { color: inherit; }
+</style>
+
+
+<!-- ============================================================
+     DA QUI INIZIA L'HTML: è lo "scheletro" della pagina.
+     ============================================================ -->
+
+<!-- 1. INTESTAZIONE -->
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">Ticket<span>Closed</span></a>
+    <nav aria-label="Menu principale">
+      <ul>
+        <li><a href="#prodotti">Prodotti</a></li>
+        <li><a href="#metodo">Come scegliamo</a></li>
+        <li><a href="#faq">Domande</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- 2. APERTURA -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero-id">#TC-0001 · stato: risolto</p>
+      <h1>L'attrezzatura giusta per il service desk</h1>
+      <p>Una raccolta di strumenti che semplificano il lavoro nel supporto IT: dalle cuffie per le chiamate al kit per gli interventi in sede. Ogni prodotto è scelto per l'uso di tutti i giorni.</p>
+      <!-- I numeri qui sotto li calcola il JavaScript contando le schede -->
+      <ul class="hero-dati">
+        <li><strong id="totale-prodotti">16</strong> prodotti selezionati</li>
+        <li><strong id="totale-categorie">4</strong> categorie</li>
+        <li>Prezzi sempre aggiornati sul negozio</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. CATEGORIE: con il JavaScript in fondo alla pagina, diventano un filtro.
+       Il numero accanto a ogni categoria lo inserisce il JavaScript. -->
+  <nav class="categorie" aria-label="Categorie">
+    <div class="wrap">
+      <ul>
+        <li><a href="#tutti" class="attivo">Tutti</a></li>
+        <li><a href="#postazione">Postazione</a></li>
+        <li><a href="#strumenti">Strumenti da tecnico</a></li>
+        <li><a href="#formazione">Formazione</a></li>
+        <li><a href="#software">Software</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 4. PRODOTTI
+       Il link del pulsante ha due forme:
+       - Amazon: data-amazon="parole di ricerca"  → il JavaScript crea il link con il tuo codice affiliato
+       - altri negozi: href="https://..." normale -->
+  <section class="prodotti" id="prodotti">
+    <div class="wrap">
+
+      <!-- Categoria: Postazione -->
+      <div class="gruppo" id="postazione">
+        <h2>Postazione</h2>
+        <p class="gruppo-intro">Per le ore passate tra chiamate, ticket e sessioni remote.</p>
+        <div class="griglia">
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0101</span><span class="stato">risolto</span></div>
+            <h3>Cuffie Jabra Evolve2 40</h3>
+            <p>Cuffie USB cablate pensate per chi passa la giornata al telefono. Leggere, con microfono su asta e tasti per rispondere e silenziare direttamente sul cavo.</p>
+            <span class="ideale">Ideale per: chiamate tutto il giorno</span>
+            <a class="bottone" data-amazon="Jabra Evolve2 40">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0102</span><span class="stato">risolto</span></div>
+            <h3>Monitor Dell P2422H da 24 pollici</h3>
+            <p>Full HD con supporto regolabile in altezza e rotazione. Ticket a sinistra, sessione remota a destra: meno finestre da alternare durante le chiamate.</p>
+            <span class="ideale">Ideale per: doppio schermo</span>
+            <a class="bottone" data-amazon="Dell P2422H monitor">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0103</span><span class="stato">risolto</span></div>
+            <h3>Mouse Logitech MX Master 3S</h3>
+            <p>Tasti laterali per passare avanti e indietro tra ticket e knowledge base, rotella veloce per scorrere i log e una batteria che dura settimane con una ricarica.</p>
+            <span class="ideale">Ideale per: navigare tra molte finestre</span>
+            <a class="bottone" data-amazon="Logitech MX Master 3S">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0104</span><span class="stato">risolto</span></div>
+            <h3>Tastiera Logitech MX Keys S</h3>
+            <p>Tastiera silenziosa e retroilluminata che si collega a tre dispositivi: si passa dal PC di lavoro al portatile di test con un tasto.</p>
+            <span class="ideale">Ideale per: chi usa più computer</span>
+            <a class="bottone" data-amazon="Logitech MX Keys S">Vedi prezzo</a>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Categoria: Strumenti da tecnico -->
+      <div class="gruppo" id="strumenti">
+        <h2>Strumenti da tecnico</h2>
+        <p class="gruppo-intro">Da tenere nello zaino per gli interventi in sede.</p>
+        <div class="griglia">
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0201</span><span class="stato">risolto</span></div>
+            <h3>Chiavetta USB Samsung BAR Plus 128 GB</h3>
+            <p>Robusta, in metallo e veloce. Con il programma gratuito Ventoy diventa una chiavetta multiboot con più immagini di installazione e strumenti di diagnostica.</p>
+            <span class="ideale">Ideale per: reinstallazioni e diagnostica</span>
+            <a class="bottone" data-amazon="Samsung BAR Plus 128GB">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0202</span><span class="stato">risolto</span></div>
+            <h3>Tester per cavi di rete RJ45</h3>
+            <p>Il modo più rapido per chiudere il classico "non mi va internet" quando il problema è il cavo o la presa a muro.</p>
+            <span class="ideale">Ideale per: problemi di rete in sede</span>
+            <a class="bottone" data-amazon="tester cavi di rete RJ45">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0203</span><span class="stato">risolto</span></div>
+            <h3>Set di cacciaviti iFixit Mako</h3>
+            <p>64 punte di precisione in una custodia compatta: viti di portatili, SSD M.2 e piccoli dispositivi senza cercare l'attrezzo giusto.</p>
+            <span class="ideale">Ideale per: aprire portatili e sostituire componenti</span>
+            <a class="bottone" data-amazon="iFixit Mako">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0204</span><span class="stato">risolto</span></div>
+            <h3>Adattatore USB-C Ethernet UGREEN</h3>
+            <p>Per collegare via cavo i portatili senza porta di rete, oppure per escludere il Wi-Fi quando una connessione dà problemi.</p>
+            <span class="ideale">Ideale per: test di connettività</span>
+            <a class="bottone" data-amazon="UGREEN adattatore USB C Ethernet">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0205</span><span class="stato">risolto</span></div>
+            <h3>SSD esterno Samsung T7 1 TB</h3>
+            <p>Grande come una carta di credito e veloce: copia i dati di un utente prima di una sostituzione del PC in pochi minuti.</p>
+            <span class="ideale">Ideale per: backup e migrazioni</span>
+            <a class="bottone" data-amazon="Samsung T7 1TB SSD esterno">Vedi prezzo</a>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Categoria: Formazione -->
+      <div class="gruppo" id="formazione">
+        <h2>Formazione</h2>
+        <p class="gruppo-intro">Per passare dalla pratica quotidiana alle certificazioni.</p>
+        <div class="griglia">
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0301</span><span class="stato">risolto</span></div>
+            <h3>ITIL Foundation, ITIL 4 Edition</h3>
+            <p>Il manuale ufficiale per la certificazione ITIL 4 Foundation: incident, problem e change management spiegati come li chiede l'esame.</p>
+            <span class="ideale">Ideale per: certificazione ITIL</span>
+            <a class="bottone" data-amazon="ITIL Foundation ITIL 4 Edition">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0302</span><span class="stato">risolto</span></div>
+            <h3>CompTIA A+ All-in-One Exam Guide</h3>
+            <p>La guida di Mike Meyers per l'esame CompTIA A+: hardware, sistemi operativi, reti e troubleshooting. In inglese.</p>
+            <span class="ideale">Ideale per: certificazione CompTIA A+</span>
+            <a class="bottone" data-amazon="CompTIA A+ All-in-One Exam Guide Meyers">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0303</span><span class="stato">risolto</span></div>
+            <h3>The Phoenix Project</h3>
+            <p>Un romanzo ambientato in un reparto IT in crisi. Spiega DevOps e la gestione dei flussi di lavoro meglio di molti manuali.</p>
+            <span class="ideale">Ideale per: capire i processi IT</span>
+            <a class="bottone" data-amazon="The Phoenix Project Gene Kim">Vedi prezzo</a>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Categoria: Software -->
+      <div class="gruppo" id="software">
+        <h2>Software</h2>
+        <p class="gruppo-intro">Licenze e abbonamenti che si incontrano ogni giorno nel supporto.</p>
+        <div class="griglia">
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0401</span><span class="stato">risolto</span></div>
+            <h3>Microsoft 365</h3>
+            <p>Word, Excel, PowerPoint e Outlook sempre aggiornati, più spazio su OneDrive. È la stessa suite che si supporta ogni giorno al service desk.</p>
+            <span class="ideale">Ideale per: uso personale e familiare</span>
+            <a class="bottone" data-amazon="Microsoft 365 Personal">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0402</span><span class="stato">risolto</span></div>
+            <h3>Windows 11 Pro</h3>
+            <p>Aggiunge BitLocker, Desktop remoto come host e l'accesso al dominio: le funzioni che mancano alla versione Home.</p>
+            <span class="ideale">Ideale per: PC usati per lavoro</span>
+            <a class="bottone" data-amazon="Windows 11 Pro licenza">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0403</span><span class="stato">risolto</span></div>
+            <h3>Bitdefender Total Security</h3>
+            <p>Antivirus con protezione web e anti-phishing per più dispositivi, Windows, Mac e smartphone, con un'unica licenza.</p>
+            <span class="ideale">Ideale per: proteggere tutti i dispositivi di casa</span>
+            <a class="bottone" data-amazon="Bitdefender Total Security">Vedi prezzo</a>
+          </article>
+
+          <article class="ticket">
+            <div class="ticket-top"><span>#TC-0404</span><span class="stato">risolto</span></div>
+            <h3>1Password</h3>
+            <p>Gestore di password con condivisione sicura delle credenziali. Una password diversa per ogni servizio, senza doverle ricordare tutte.</p>
+            <span class="ideale">Ideale per: smettere di riusare le password</span>
+            <a class="bottone" href="https://1password.com/it">Vedi prezzo</a>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. COME SCEGLIAMO: dà credibilità a un sito senza un volto -->
+  <section class="metodo" id="metodo">
+    <div class="wrap">
+      <h2>Come scegliamo i prodotti</h2>
+      <ul class="criteri">
+        <li>
+          <span class="codice">CRITERIO 01</span>
+          <strong>Uso reale nel supporto IT</strong>
+          <span>Entra solo ciò che risolve un problema concreto di chi lavora al service desk o negli interventi in sede.</span>
+        </li>
+        <li>
+          <span class="codice">CRITERIO 02</span>
+          <strong>Marchi affidabili</strong>
+          <span>Prodotti di produttori diffusi negli ambienti aziendali, con assistenza e ricambi facili da trovare.</span>
+        </li>
+        <li>
+          <span class="codice">CRITERIO 03</span>
+          <strong>Niente prezzi scritti a mano</strong>
+          <span>I prezzi cambiano ogni giorno: il pulsante porta sempre alla pagina del negozio con il prezzo aggiornato.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. DOMANDE FREQUENTI: <details> si apre e si chiude da solo, senza JavaScript -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <h2>Domande frequenti</h2>
+      <details>
+        <summary>Comprare tramite questi link costa di più?</summary>
+        <p>No. Il prezzo è lo stesso. Il negozio riconosce una piccola commissione a Ticket Closed, che serve a mantenere il sito.</p>
+      </details>
+      <details>
+        <summary>Perché non ci sono i prezzi?</summary>
+        <p>Perché cambiano spesso e un prezzo vecchio sarebbe sbagliato. Il pulsante "Vedi prezzo" apre la pagina del negozio con il prezzo di oggi.</p>
+      </details>
+      <details>
+        <summary>Posso suggerire un prodotto?</summary>
+        <p>Sì. Le segnalazioni arrivano dai profili social di Ticket Closed: se un prodotto risolve un problema reale del supporto IT, viene valutato per la raccolta.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<!-- 7. PIÈ DI PAGINA: avviso sui link di affiliazione (obbligatorio per Amazon) -->
+<footer id="info">
+  <div class="wrap">
+    <p><strong>Ticket Closed</strong> seleziona attrezzatura, strumenti, formazione e software per chi lavora nel supporto IT.</p>
+    <p>In qualità di Affiliato Amazon, Ticket Closed riceve un guadagno dagli acquisti idonei. Alcuni link di questa pagina sono link di affiliazione: il prezzo per chi compra non cambia.</p>
+    <p>I nomi dei prodotti e dei marchi appartengono ai rispettivi proprietari. · <a href="privacy.html">Privacy</a></p>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     8. JAVASCRIPT
+     ============================================================ -->
+<script>
+  // ------------------------------------------------------------
+  // A. LINK DI AFFILIAZIONE
+  // Quando Amazon Associates ti approva, scrivi qui il tuo codice
+  // (es. 'ticketclosed-21'). Lasciandolo vuoto i link funzionano lo stesso,
+  // ma non generano commissioni.
+  // ------------------------------------------------------------
+  const TAG_AFFILIATO = '';
+
+  document.querySelectorAll('[data-amazon]').forEach(function (bottone) {
+    const ricerca = encodeURIComponent(bottone.dataset.amazon);
+    let indirizzo = 'https://www.amazon.it/s?k=' + ricerca;
+    if (TAG_AFFILIATO !== '') {
+      indirizzo = indirizzo + '&tag=' + TAG_AFFILIATO;
+    }
+    bottone.href = indirizzo;
+  });
+
+  // tutti i pulsanti prodotto si aprono in una nuova scheda e sono segnati come link sponsorizzati
+  document.querySelectorAll('.bottone').forEach(function (bottone) {
+    bottone.target = '_blank';
+    bottone.rel = 'sponsored noopener';
+  });
+
+  // ------------------------------------------------------------
+  // B. CONTATORI: il sito conta da solo prodotti e categorie
+  // ------------------------------------------------------------
+  const gruppi = document.querySelectorAll('.gruppo');
+  document.getElementById('totale-prodotti').textContent = document.querySelectorAll('.ticket').length;
+  document.getElementById('totale-categorie').textContent = gruppi.length;
+
+  // ------------------------------------------------------------
+  // C. FILTRO DELLE CATEGORIE (sessione 3)
+  // TROVARE gli elementi, REAGIRE al clic, MOSTRARE/NASCONDERE.
+  // ------------------------------------------------------------
+  const linkCategorie = document.querySelectorAll('.categorie a');
+
+  linkCategorie.forEach(function (link) {
+    const scelta = link.getAttribute('href').slice(1);
+
+    // accanto al nome di ogni categoria, il numero di prodotti che contiene
+    const gruppo = document.getElementById(scelta);
+    const quanti = scelta === 'tutti'
+      ? document.querySelectorAll('.ticket').length
+      : (gruppo ? gruppo.querySelectorAll('.ticket').length : 0);
+    const conta = document.createElement('span');
+    conta.className = 'conta';
+    conta.textContent = quanti;
+    link.appendChild(conta);
+
+    link.addEventListener('click', function (evento) {
+      evento.preventDefault();
+
+      gruppi.forEach(function (g) {
+        g.hidden = (scelta !== 'tutti' && g.id !== scelta);
+      });
+
+      linkCategorie.forEach(function (altro) {
+        altro.classList.remove('attivo');
+      });
+      link.classList.add('attivo');
+    });
+  });
+</script>
+</body>
+</html>
