@@ -15,8 +15,6 @@
 <!--
   ============================================================
   TICKET CLOSED
-  Sessione 1: la struttura (HTML)     → dopo il </style>
-  Sessione 2: l'aspetto (CSS)         → tra <style>
   /* Caratteri ospitati sul sito (cartella fonts/). Se i file mancano, si usano i caratteri di riserva. */
   @font-face { font-family: "Barlow Condensed"; src: url("fonts/BarlowCondensed-SemiBold.ttf") format("truetype"); font-weight: 600; font-display: swap; }
   @font-face { font-family: "Barlow Condensed"; src: url("fonts/BarlowCondensed-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
@@ -28,11 +26,6 @@
 <body>
 
   Sessione 3: l'interazione (JS)      → in fondo, tra <script> e </script>
-
-  PER AGGIUNGERE UN PRODOTTO: copia un blocco <article class="ticket">,
-  cambia codice, titolo, descrizione, "Ideale per" e il link del pulsante.
-  PER ATTIVARE I GUADAGNI: in fondo al file, scrivi il tuo codice
-  Amazon Associates in TAG_AFFILIATO. Tutti i link si aggiornano da soli.
   ============================================================
 -->
 <style>
@@ -185,7 +178,7 @@
 
 
 <!-- ============================================================
-     DA QUI INIZIA L'HTML: è lo "scheletro" della pagina.
+     DA QUI INIZIA L'HTML
      ============================================================ -->
 
 <!-- 1. INTESTAZIONE -->
@@ -207,7 +200,6 @@
   <!-- 2. APERTURA -->
   <section class="hero">
     <div class="wrap">
-      <p class="hero-id">#TC-0001 · stato: risolto</p>
       <h1>L'attrezzatura giusta per il service desk</h1>
       <p>Una raccolta di strumenti che semplificano il lavoro nel supporto IT: dalle cuffie per le chiamate al kit per gli interventi in sede. Ogni prodotto è scelto per l'uso di tutti i giorni.</p>
       <!-- I numeri qui sotto li calcola il JavaScript contando le schede -->
