@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://ticket-closed.github.io/sitemap.xml
